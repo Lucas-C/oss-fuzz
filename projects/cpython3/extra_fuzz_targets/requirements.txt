@@ -1,0 +1,4 @@
+# for fuzz_pypilib_pyyaml_load:
+pyyaml
+# for fuzz_pypilib_simplejson_decode:
+simplejson

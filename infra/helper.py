@@ -313,7 +313,7 @@ def _workdir_from_dockerfile(project_name):
 
       return os.path.normpath(workdir)
 
-  return os.path.join('/src', project_name)
+  return '/src/{}'.format(project_name)
 
 
 def docker_run(run_args, print_output=True):
@@ -486,6 +486,7 @@ def check_build(args):
 
   run_args = _env_to_docker_args(env) + [
       '-v', '%s:/out' % _get_output_dir(args.project_name),
+      '-w', '/out',
       '-t', 'gcr.io/oss-fuzz-base/base-runner'
   ]
 

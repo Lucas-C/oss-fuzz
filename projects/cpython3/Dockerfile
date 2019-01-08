@@ -1,4 +1,4 @@
-# Copyright 2018 Google Inc.
+# Copyright 2019 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@
 
 FROM gcr.io/oss-fuzz-base/base-builder
 MAINTAINER kusano@google.com
-RUN apt-get update && apt-get install -y make autoconf automake libtool \
-libssl-dev zlib1g-dev   libncurses5-dev libbz2-dev liblzma-dev libsqlite3-dev \
-libffi-dev tcl-dev libgdbm-dev libreadline-dev tk tk-dev
-RUN git clone --depth 1 https://github.com/python/cpython.git cpython
-WORKDIR cpython
+RUN apt-get update && apt-get install -y make autoconf automake gdb libtool \
+libssl-dev zlib1g-dev libncurses5-dev libbz2-dev liblzma-dev libsqlite3-dev \
+libffi-dev tcl-dev libgdbm-dev libreadline-dev libyaml-dev tk tk-dev
 COPY build.sh $SRC/
+COPY corpus $SRC/corpus
+COPY extra_fuzz_targets $SRC/extra_fuzz_targets
 
